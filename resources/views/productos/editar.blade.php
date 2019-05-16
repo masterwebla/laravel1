@@ -3,6 +3,7 @@
 
 @section('contenido')
 	<h2>Editar {{$producto->nombre}}</h2>
+	@include('secciones.errores')
 	<form action="{{route('actualizar',$producto->id)}}" method="post">
 		@csrf
 		<input type="hidden" name="_method" value="put">

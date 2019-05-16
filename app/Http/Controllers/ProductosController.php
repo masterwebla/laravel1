@@ -20,8 +20,14 @@ class ProductosController extends Controller
 
     //Función para guardar un producto
     public function guardarProducto(Request $request){
+        //Validación de campos
+        $request->validate([
+            'nombre' => 'required|unique:productos|max:100',
+            'precio' => 'required|numeric',
+            'vencimiento' => 'required|date'
+        ]);
 
-    	Producto::create([				//INSERT INTO productos (nombre,precio,vencimiento) VALUES('')
+    	Producto::create([		//INSERT INTO productos (nombre,precio,vencimiento) VALUES('')
     		'nombre'=>$request->nombre,
     		'precio'=>$request->precio,
     		'vencimiento'=>$request->vencimiento
@@ -38,9 +44,21 @@ class ProductosController extends Controller
 
     //Función para actualizar
     public function actualizarProducto(Request $request,$id){
-    	return $request;
+    	$producto = Producto::find($id);
+        $producto->nombre = $request->nombre;
+        $producto->precio = $request->precio;
+        $producto->vencimiento = $request->vencimiento;
+        $producto->save();
+
+        return redirect()->route('listar');
+
     }
 
-
     //Función para borrar un producto
+    public function eliminarProducto($id){
+        $producto = Producto::find($id);
+        $producto->delete();
+
+        return redirect()->route('listar');
+    }
 }

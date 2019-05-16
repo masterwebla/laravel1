@@ -21,8 +21,12 @@
 					<td>${{$producto->precio}}</td>
 					<td>{{$producto->vencimiento}}</td>
 					<td>
-						<a class="btn btn-info" href="{{route('editar',$producto->id)}}">Editar</a>
-						<a class="btn btn-danger" href="">Borrar</a>
+						<form action="{{ route('eliminar',$producto->id) }}" method="post">
+							@csrf
+							<input type="hidden" name="_method" value="delete">
+							<a class="btn btn-info" href="{{route('editar',$producto->id)}}">Editar</a>
+							<button class="btn btn-danger" onClick="return confirm('Eliminar producto?')">Eliminar</button>
+						</form>
 					</td>
 				</tr>
 			@endforeach
