@@ -17,6 +17,8 @@ Route::get('/editar-producto/{id}','ProductosController@editarProducto')->name('
 Route::put('/actualizar-producto/{id}','ProductosController@actualizarProducto')->name('actualizar');
 Route::delete('/borrar-producto/{id}','ProductosController@eliminarProducto')->name('eliminar');
 
+Route::resource('/empleados','EmpleadoController');
+
 //Rutas para el CRUD de Servicios
 Route::resource('/servicios','ServiciosController');
 //Route::get('/servicios','ServiciosController@index')->name('servicios.index');

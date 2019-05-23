@@ -8,7 +8,7 @@ class PaginasController extends Controller
 
 	public function nosotros(){
 		$nombre = "Mauricio";
-		$edad = 16;
+		$edad = 32;
 		return view('nosotros',compact('nombre','edad'));
 	}
 
